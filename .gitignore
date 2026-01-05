@@ -1,0 +1,9 @@
+venv_face/
+__pycache__/
+*.pyc
+.gemini/
+.vscode/
+dataset/
+new_identities_upload/
+Add New Identity/
+models.zip
