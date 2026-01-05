@@ -1,6 +1,6 @@
 # 🤖 Anti-Spoofing Face Attendance System (6000+ Users)
 
-A production-ready Face Recognition & Attendance System designed for scale. It integrates **DeepFace (ArcFace)** for recognition and **Gaze-Based Liveness Detection** for anti-spoofing, optimized for both CPU and GPU environments.
+A production-ready Face Recognition & Attendance System designed for scale. It integrates **DeepFace (ArcFace & FaceNet512)** for recognition and **Gaze-Based Liveness Detection** for anti-spoofing, optimized for both CPU and GPU environments.
 
 ---
 
@@ -50,14 +50,21 @@ To add users without re-training the entire 6000-person dataset:
     ```bash
     python "Add New Identity/add_new_identity.py"
     ```
-4.  The system will extract vectors, update the FAISS index, and move images to the main dataset.
+4.  **Select Model**: Press `a` for **ArcFace** or `f` for **FaceNet512** when prompted.
+5.  The system will extract vectors, update the FAISS index, and move images to the main dataset.
 
 ### 3️⃣ Train from Scratch
 If you want to rebuild the model from the full `dataset/` folder:
 ```bash
 python train_model.py
 ```
-*   Follow the interactive prompts to select Model (ArcFace/FaceNet) and Device (CPU/GPU).
+**Interactive CLI Options:**
+*   **Model Selection**:
+    *   Press `a` : **ArcFace** (Recommended for accuracy)
+    *   Press `f` : **FaceNet512**
+*   **Device Selection**:
+    *   Press `g` : **GPU** (Requires CUDA, fastest speed)
+    *   Press `c` : **CPU** (Universal compatibility)
 
 ### 4️⃣ Camera Calibration
 Eye-gaze detection works best when calibrated to your specific camera and screen setup.
