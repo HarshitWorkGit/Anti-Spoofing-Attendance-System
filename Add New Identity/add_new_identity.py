@@ -31,8 +31,10 @@ class Colors:
 sys.stdout.reconfigure(encoding='utf-8')
 
 # ================= CONFIG =================
-UPLOAD_DIR = "Add New Identity"
-DATASET_DIR = "dataset"
+# ================= CONFIG =================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_DIR = BASE_DIR
+DATASET_DIR = os.path.join(BASE_DIR, "..", "dataset")
 BATCH_THRESHOLD_FOR_GPU = 50  # If more than 50 images, try GPU
 
 def print_header():
@@ -92,7 +94,7 @@ def main():
     # 2. Model Selection
     model_name, model_dir_name = get_model_choice()
     
-    MODEL_DIR = os.path.join("models", model_dir_name)
+    MODEL_DIR = os.path.join(BASE_DIR, "..", "models", model_dir_name)
     FAISS_INDEX_PATH = os.path.join(MODEL_DIR, "faiss_index.bin")
     LABELS_PATH = os.path.join(MODEL_DIR, "labels.npy")
 
