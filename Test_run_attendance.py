@@ -42,21 +42,42 @@ import sys
 from deepface import DeepFace
 import mediapipe as mp
 
+
+# ================== MODEL SELECTION ==================
+print("\nSelect face recognition model:")
+print("Press 'a' for ArcFace")
+print("Press 'f' for FaceNet")
+
+choice = input("Your choice (a/f): ").strip().lower()
+
+if choice == "f":
+    MODEL_NAME = "Facenet512"
+    MODEL_FOLDER = "facenet"
+    print("✅ FaceNet selected")
+else:
+    MODEL_NAME = "ArcFace"
+    MODEL_FOLDER = "arcface"
+    print("✅ ArcFace selected (default)")
+
+
+
 # ================== CONFIG ==================
 CAMERA_INDEX = 0
 FRAME_WIDTH = 320    # 🚀 OPTIMIZATION: process smaller frames
 FRAME_HEIGHT = 240
 
-MODEL_DIR = os.path.join("models", "arcface")
+# MODEL_DIR = os.path.join("models", "arcface")
+MODEL_DIR = os.path.join("models", MODEL_FOLDER)
+
 FAISS_INDEX = "faiss_index.bin"
 LABELS_FILE = "labels.npy"
 CALIB_FILE = os.path.join("camera_calibration", "calibration.json")
 
-MODEL_NAME = "ArcFace"
+# MODEL_NAME = "ArcFace"
 # DETECTOR = "mtcnn 
 DETECTOR = "opencv"  # 🚀 OPTIMIZATION: 'opencv' is 10x faster than 'mtcnn' on CPU
 
-RECOG_THRESHOLD = 1
+RECOG_THRESHOLD = 0.8  # No lower than 0.8
 FRAME_SKIP = 5
 
 REQUIRED_MATCHES = 2      # 🔥 FAST LOCK
